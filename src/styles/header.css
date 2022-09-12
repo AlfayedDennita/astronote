@@ -1,0 +1,124 @@
+.header {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-color);
+  border-bottom: 0.15rem solid var(--primary-color-50);
+}
+
+.header__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  margin: 0 var(--wrapper-padding-x);
+}
+
+.header__logo-link {
+  display: block;
+  padding: 1rem 0;
+}
+
+.header__navbar {
+  display: contents;
+}
+
+@media (min-width: 576px) {
+  .header__navbar {
+    display: block;
+  }
+}
+
+.header__hamburger-button {
+  margin: 0 var(--wrapper-padding-x);
+}
+
+@media (min-width: 576px) {
+  .header__hamburger-button {
+    display: none !important;
+  }
+}
+
+.header__navbar-list {
+  flex: 1 1 100%;
+  list-style: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-top: 0.15rem solid var(--primary-color-50);
+  transition: 0.5s;
+}
+
+.header__navbar-list--closed {
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+}
+
+.header__navbar-list--opened {
+  visibility: visible;
+  opacity: 1;
+  max-height: 15rem;
+}
+
+@media (min-width: 576px) {
+  .header__navbar-list {
+    visibility: visible;
+    opacity: 1;
+    max-height: initial;
+    overflow: visible;
+    flex-direction: row;
+    gap: 0.75rem;
+    margin: 0 var(--wrapper-padding-x);
+    border: none;
+  }
+}
+
+.header__navbar-action {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 1rem var(--wrapper-padding-x);
+  border-radius: 0;
+  transition: 0.25s;
+}
+
+@media (hover: hover) {
+  .header__navbar-action:hover {
+    background-color: var(--primary-color-50);
+  }
+}
+
+.header__navbar-action:active {
+  background-color: rgba(var(--primary-color-rgb), 0.2);
+}
+
+@media (min-width: 576px) {
+  .header__navbar-action {
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    background-color: var(--primary-color-50);
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .header__navbar-action-icon {
+    font-size: 0.9rem;
+  }
+
+  @media (hover: hover) {
+    .header__navbar-action:hover {
+      background-color: rgba(var(--primary-color-rgb), 0.2);
+    }
+  }
+
+  .header__navbar-action:active {
+    background-color: rgba(var(--primary-color-rgb), 0.3);
+  }
+}

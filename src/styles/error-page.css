@@ -1,0 +1,31 @@
+.error-page__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.error-page__number {
+  max-width: 100%;
+  padding: 3rem;
+  background-color: var(--primary-color);
+  border-radius: 0.5rem;
+  font: 700 4rem var(--heading-font);
+  word-wrap: break-word;
+  text-align: center;
+  color: var(--bg-color);
+}
+
+.error-page__text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-color-600);
+}
+
+.error-page__button {
+  margin-top: 1.5rem;
+}

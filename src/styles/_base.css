@@ -1,0 +1,188 @@
+@import url(_theme.css);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  line-height: 1;
+  vertical-align: baseline;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--primary-color-200);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.wrapper {
+  width: min(992px, 100%);
+  display: block;
+  margin: 0 auto;
+}
+
+.wrapper--padding-x {
+  padding-left: var(--wrapper-padding-x);
+  padding-right: var(--wrapper-padding-x);
+}
+
+.link {
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button--padded {
+  padding: 0.75rem;
+}
+
+.button--bg-primary {
+  background-color: var(--primary-color-300);
+  color: var(--bg-color);
+  transition: background-color 0.25s, color 0.25s;
+}
+
+@media (hover: hover) {
+  .button--bg-primary:hover {
+    background-color: var(--primary-color-400);
+  }
+}
+
+.button--bg-primary:active {
+  background-color: var(--primary-color-500);
+}
+
+.input-string {
+  width: 100%;
+  display: block;
+  padding: 1rem;
+  background-color: var(--text-color-50);
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  transition: background-color 0.5s, box-shadow 0.5s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.input-string:focus {
+  background-color: rgba(var(--text-color-rgb), 0.1);
+}
+
+.input-string::placeholder {
+  color: var(--text-color-200);
+  transition: color 0.25s;
+}
+
+@media (hover: hover) {
+  .input-string:hover::placeholder {
+    color: var(--text-color-300);
+  }
+}
+
+.input-string:focus::placeholder {
+  color: var(--text-color-300);
+}
+
+.input-string--contenteditable:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-color-200);
+  cursor: text;
+  transition: color 0.25s;
+}
+
+@media (hover: hover) {
+  .input-string--contenteditable:empty:hover::before {
+    color: var(--text-color-300);
+  }
+}
+
+.input-string--contenteditable:empty:focus::before {
+  color: var(--text-color-300);
+}
+
+.input-string--search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-image: url("../../public/images/close-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.input-string--invalid {
+  box-shadow: inset 0 0 0 0.1rem rgba(var(--danger-color-rgb), 0.75);
+}
+
+.input-invalid-message {
+  visibility: hidden;
+  opacity: 0;
+  font-size: 0.8rem;
+  color: var(--danger-color);
+  transition: 0.25s;
+}
+
+.input-invalid-message--showed {
+  visibility: visible;
+  opacity: 1;
+}
+
+.line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp--1 {
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp--2 {
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp--3 {
+  -webkit-line-clamp: 3;
+}
+
+.line-clamp--4 {
+  -webkit-line-clamp: 4;
+}
+
+.line-clamp--5 {
+  -webkit-line-clamp: 5;
+}
+
+.main {
+  margin: 2rem 0 3rem 0;
+}
+
+@media (min-width: 576px) {
+  .main {
+    margin-bottom: 5rem;
+  }
+}

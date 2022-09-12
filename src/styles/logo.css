@@ -1,0 +1,51 @@
+.logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.logo__image--small {
+  height: 1.5rem;
+}
+
+.logo__image--medium {
+  height: 1.75rem;
+}
+
+.logo__image--large {
+  height: 2rem;
+}
+
+.logo__text {
+  font-family: var(--brand-font);
+  font-size: 700;
+  transition: color 0.25s;
+}
+
+@media (hover: hover) {
+  .logo:hover .logo__text {
+    color: var(--primary-color);
+  }
+}
+
+.logo:active .logo__text {
+  color: var(--primary-color);
+}
+
+.logo__text--small {
+  font-size: 1.5rem;
+}
+
+.logo__text--medium {
+  font-size: 1.75rem;
+}
+
+.logo__text--large {
+  font-size: 2rem;
+}
+
+.logo__text--highlighted {
+  color: var(--primary-color);
+}

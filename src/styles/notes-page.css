@@ -1,0 +1,22 @@
+.notes-page__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.notes-page__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font: 700 1.5rem var(--heading-font);
+}
+
+.notes-page__heading-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.notes-page__search-input {
+  max-width: calc(500px - calc(var(--wrapper-padding-x) * 2));
+}

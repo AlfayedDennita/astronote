@@ -1,0 +1,112 @@
+.note-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0.15rem solid var(--primary-color-50);
+  border-radius: 0.5rem;
+}
+
+.note-card__content {
+  flex: 1 1 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  transition: background-color 0.25s;
+}
+
+@media (hover: hover) {
+  .note-card__content:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.03);
+  }
+}
+
+.note-card__content:active {
+  background-color: rgba(var(--primary-color-rgb), 0.06);
+}
+
+.note-card__link {
+  font: 600 1.15rem var(--heading-font);
+  word-wrap: break-word;
+}
+
+.note-card__link:hover {
+  text-decoration: underline;
+}
+
+.note-card__link::after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.note-card__date {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  color: var(--text-color-400);
+}
+
+.note-card__body {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+}
+
+@media (min-width: 576px) {
+  .note-card__body {
+    -webkit-line-clamp: 5;
+  } 
+}
+
+.note-card__actions {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color-50);
+}
+
+@media (min-width: 576px) {
+  .note-card__actions {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.note-card__action {
+  padding: 0.5rem;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+@media (hover: hover) {
+  .note-card__action:hover {
+    background-color: rgba(var(--text-color-rgb), 0.1);
+  }
+
+  .note-card__action--danger:hover {
+    background-color: rgba(var(--danger-color-rgb), 0.75);
+    color: var(--primary-color-50);
+  }
+}
+
+.note-card__action:active {
+  background-color: rgba(var(--text-color-rgb), 0.2);
+}
+
+.note-card__action--danger:active {
+  background-color: var(--danger-color);
+  color: var(--primary-color-50);
+}
+
+.note-card__action-icon {
+  font-size: 1.25rem;
+}

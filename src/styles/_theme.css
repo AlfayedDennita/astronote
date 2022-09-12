@@ -1,0 +1,50 @@
+:root {
+  /* Viewport Breakpoints: 576px, 768px, 992px, 1200px; */
+
+  /* Colors */
+  --bg-color: #ffffff;
+  --bg-color-rgb: 255, 255, 255;
+
+  --text-color: #383838;
+  --text-color-rgb: 56, 56, 56;
+  --text-color-50: #f2f2f2;
+  --text-color-100: #d9d9d9;
+  --text-color-200: #bfbfbf;
+  --text-color-300: #a6a6a6;
+  --text-color-400: #8c8c8c;
+  --text-color-500: #737373;
+  --text-color-600: #595959;
+  --text-color-700: #404040;
+  --text-color-800: #262626;
+  --text-color-900: #0d0d0d;
+
+  --primary-color: #ff6933;
+  --primary-color-rgb: 255, 105, 51;
+  --primary-color-50: #fff0e5;
+  --primary-color-100: #ffceb3;
+  --primary-color-200: #ffaa80;
+  --primary-color-300: #f98453;
+  --primary-color-400: #ee5e2a;
+  --primary-color-500: #d54511;
+  --primary-color-600: #ac2d06;
+  --primary-color-700: #801900;
+  --primary-color-800: #4d0d00;
+  --primary-color-900: #1a0300;
+
+  --danger-color: #eb4654;
+  --danger-color-rgb: 235, 70, 84;
+
+  /* Fonts */
+  --brand-font: "Titillium Web", Arial, sans-serif;
+  --heading-font: "Titillium Web", Arial, sans-serif;
+  --body-font: "Inter", Arial, sans-serif;
+
+  /* Sizes */
+  --wrapper-padding-x: 1rem;
+}
+
+@media (min-width: 576px) {
+  :root {
+    --wrapper-padding-x: 1.5rem;
+  }
+}
