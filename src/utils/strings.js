@@ -429,7 +429,7 @@ const strings = [
   {
     id: 62,
     data: {
-      en: 'Good Night',
+      en: 'Good Evening',
       id: 'Selamat Malam',
     },
   },
