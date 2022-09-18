@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#ff6933' : '#262626');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#ff6933' : '#1a1a1a');
   }, [theme]);
 
   const localeValue = useMemo(() => ({
