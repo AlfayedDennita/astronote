@@ -1,53 +1,64 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { bool, func, string } from 'prop-types';
-import { AiFillFolder, AiFillEdit, AiFillRest, AiFillFolderOpen } from 'react-icons/ai';
+import { AiFillFolder, AiFillFolderOpen, AiFillDelete } from 'react-icons/ai';
 
-import { archiveNote, unarchiveNote, deleteNote } from '../../utils/local-data';
-
+import { archiveNote, unarchiveNote, deleteNote } from '../../utils/network-data';
+import LocaleContext from '../../contexts/LocaleContext';
+import ModalContext from '../../contexts/ModalContext';
 import NoteCardAction from './NoteCardAction';
 
-function NoteCardActions({ id, title, isArchived, refreshNotes }) {
-  function onArchiveButtonClickHandler() {
-    isArchived ? unarchiveNote(id) : archiveNote(id);
-    refreshNotes();
-  }
+function NoteCardActions({
+  id, title, isArchived, refreshNotes,
+}) {
+  const { getString } = useContext(LocaleContext);
+  const { confirm } = useContext(ModalContext);
 
-  function onDeleteButtonClickHandler() {
-    const isAgreed = window.confirm(`Are you sure to delete "${title}" note?`);
-    isAgreed && deleteNote(id);
-    refreshNotes();
-  }
+  const onArchiveHandler = async () => {
+    if (isArchived) {
+      await unarchiveNote(id);
+    } else {
+      await archiveNote(id);
+    }
+    await refreshNotes();
+  };
+
+  const onDeleteHandler = async () => {
+    const isAgreed = await confirm({
+      title: getString(45),
+      message: `${getString(46)} "${title}" ${getString(47)}?`,
+      ConfirmIcon: AiFillDelete,
+      confirmText: getString(48),
+      isDanger: true,
+    });
+    if (isAgreed) {
+      await deleteNote(id);
+    }
+    await refreshNotes();
+  };
 
   const variants = {
     archiveButton: {
-      title: isArchived ? 'Remove Note from Archives' : 'Add Note to Archives',
       Icon: isArchived ? AiFillFolderOpen : AiFillFolder,
-    }
+      title: isArchived ? getString(49) : getString(50),
+    },
   };
 
   return (
     <ul className="note-card__actions">
       <li>
         <NoteCardAction
-          type="button"
           Icon={variants.archiveButton.Icon}
           title={variants.archiveButton.title}
-          onClick={onArchiveButtonClickHandler} />
+          onClick={onArchiveHandler}
+        />
       </li>
       <li>
         <NoteCardAction
-          type="link"
-          Icon={AiFillEdit}
-          title="Edit Note"
-          to={`/notes/edit/${id}`} />
-      </li>
-      <li>
-        <NoteCardAction
-          type="button"
-          Icon={AiFillRest}
-          title="Delete Note"
+          Icon={AiFillDelete}
+          title={getString(45)}
           isDanger
-          onClick={onDeleteButtonClickHandler} />
+          onClick={onDeleteHandler}
+        />
       </li>
     </ul>
   );

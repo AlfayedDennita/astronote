@@ -1,74 +1,93 @@
-import React from 'react';
-import autoBind from 'auto-bind/react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import parser from 'html-react-parser';
+import { AiFillDelete } from 'react-icons/ai';
 
-import withRouter from '../utils/withRouter';
-import { getNote, archiveNote, unarchiveNote, deleteNote } from '../utils/local-data';
-
+import {
+  getNote, archiveNote, unarchiveNote, deleteNote,
+} from '../utils/network-data';
+import { truncateText } from '../utils';
+import useTitle from '../hooks/useTitle';
+import LocaleContext from '../contexts/LocaleContext';
+import ModalContext from '../contexts/ModalContext';
+import LoadingPage from './LoadingPage';
 import Error404Page from './Error404Page';
 import ViewNoteHeader from '../components/ViewNote/ViewNoteHeader';
 import ViewNoteBody from '../components/ViewNote/ViewNoteBody';
 
 import '../styles/view-note-page.css';
 
-class ViewNotePage extends React.Component {
-  constructor(props) {
-    super(props);
+function ViewNotePage() {
+  const navigate = useNavigate();
+  const params = useParams();
+  const { getString } = useContext(LocaleContext);
+  const { confirm } = useContext(ModalContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [note, setNote] = useState(null);
+  const [isArchived, setIsArchived] = useState(note ? note.archived : false);
 
-    this.note = getNote(this.props.params.id) || null;
-
-    this.state = {
-      isArchived: this.note ? this.note.archived : null,
+  useEffect(() => {
+    const getNoteFromNetwork = async () => {
+      const { error, data } = await getNote(params.id);
+      if (!error) {
+        setNote(data);
+        setIsArchived(data.archived);
+      }
+      setIsLoading(false);
     };
+    getNoteFromNetwork();
+  }, [params]);
 
-    autoBind(this);
-  }
+  const onArchiveHandler = async () => {
+    if (isArchived) {
+      await unarchiveNote(note.id);
+    } else {
+      await archiveNote(note.id);
+    }
+    setIsArchived((prevIsArchived) => !prevIsArchived);
+  };
 
-  onArchiveButtonClickHandler() {
-    this.state.isArchived
-      ? unarchiveNote(this.note.id)
-      : archiveNote(this.note.id);
-    
-    this.setState((prevState) => ({
-      isArchived: !prevState.isArchived,
-    }));
-  }
-
-  onDeleteButtonClickHandler() {
-    const isAgreed = window.confirm(`Are you sure to delete "${this.note.title}" note?`);
+  const onDeleteHandler = async () => {
+    const isAgreed = await confirm({
+      title: getString(45),
+      message: `${getString(46)} "${note.title}" ${getString(47)}?`,
+      ConfirmIcon: AiFillDelete,
+      confirmText: getString(48),
+      isDanger: true,
+    });
 
     if (isAgreed) {
-      deleteNote(this.note.id);
-      this.state.isArchived
-        ? this.props.navigate('/archives')
-        : this.props.navigate('/');
+      await deleteNote(note.id);
+      if (isArchived) {
+        navigate('/archives');
+      } else {
+        navigate('/');
+      }
     }
+  };
+
+  let elementToRender = <Error404Page />;
+
+  useTitle((note !== null && !isLoading) ? truncateText(note.title, 50) : null);
+
+  if (note !== null) {
+    elementToRender = (
+      <main className="main view-note-page">
+        <div className="wrapper wrapper--padding-x view-note-page__wrapper">
+          <ViewNoteHeader
+            title={note.title}
+            createdDate={note.createdAt}
+            isArchived={isArchived}
+            onArchiveButtonClick={onArchiveHandler}
+            onDeleteButtonClick={onDeleteHandler}
+          />
+          <ViewNoteBody>{parser(note.body)}</ViewNoteBody>
+        </div>
+      </main>
+    );
   }
 
-  render() {
-    let render = <Error404Page />
-
-    if (this.note) {
-      const { id, title, body, createdAt } = this.note;
-
-      render = (
-        <main className="main view-note-page">
-          <div className="wrapper wrapper--padding-x view-note-page__wrapper">
-            <ViewNoteHeader
-              id={id}
-              title={title}
-              createdDate={createdAt}
-              isArchived={this.state.isArchived}
-              onArchiveButtonClick={this.onArchiveButtonClickHandler}
-              onDeleteButtonClick={this.onDeleteButtonClickHandler} />
-            <ViewNoteBody>{parser(body)}</ViewNoteBody>
-          </div>
-        </main>
-      );
-    }
-
-    return render;
-  }
+  return isLoading ? <LoadingPage /> : elementToRender;
 }
 
-export default withRouter(ViewNotePage);
+export default ViewNotePage;

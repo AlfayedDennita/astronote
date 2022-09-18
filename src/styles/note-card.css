@@ -1,14 +1,14 @@
 .note-card {
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 0.15rem solid var(--primary-color-50);
   border-radius: 0.5rem;
+  border: 0.15rem solid var(--primary-color-50);
+  overflow: hidden;
 }
 
 .note-card__content {
-  flex: 1 1 auto;
+  flex-grow: 1;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@
 
   .note-card__action--danger:hover {
     background-color: rgba(var(--danger-color-rgb), 0.75);
-    color: var(--primary-color-50);
+    color: var(--bg-color-abs);
   }
 }
 
@@ -104,7 +104,7 @@
 
 .note-card__action--danger:active {
   background-color: var(--danger-color);
-  color: var(--primary-color-50);
+  color: var(--bg-color-abs);
 }
 
 .note-card__action-icon {

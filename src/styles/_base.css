@@ -12,7 +12,7 @@
 }
 
 ::selection {
-  background-color: var(--primary-color-200);
+  background-color: rgba(var(--primary-color-rgb), 0.25);
 }
 
 body {
@@ -21,9 +21,13 @@ body {
 }
 
 .wrapper {
-  width: min(992px, 100%);
+  width: min(var(--lg), 100%);
   display: block;
   margin: 0 auto;
+}
+
+.wrapper--sm {
+  width: min(var(--sm), 100%);
 }
 
 .wrapper--padding-x {
@@ -32,8 +36,8 @@ body {
 }
 
 .link {
-  color: var(--text-color);
   text-decoration: none;
+  color: var(--text-color);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -59,102 +63,25 @@ body {
 }
 
 .button--bg-primary {
-  background-color: var(--primary-color-300);
-  color: var(--bg-color);
-  transition: background-color 0.25s, color 0.25s;
+  background-color: rgba(var(--primary-color-rgb), 0.8);
+  color: var(--bg-color-abs);
+  transition: background-color 0.25s;
 }
 
 @media (hover: hover) {
   .button--bg-primary:hover {
-    background-color: var(--primary-color-400);
+    background-color: rgba(var(--primary-color-rgb), 0.9);
   }
 }
 
 .button--bg-primary:active {
-  background-color: var(--primary-color-500);
-}
-
-.input-string {
-  width: 100%;
-  display: block;
-  padding: 1rem;
-  background-color: var(--text-color-50);
-  outline: none;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
-  transition: background-color 0.5s, box-shadow 0.5s;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.input-string:focus {
-  background-color: rgba(var(--text-color-rgb), 0.1);
-}
-
-.input-string::placeholder {
-  color: var(--text-color-200);
-  transition: color 0.25s;
-}
-
-@media (hover: hover) {
-  .input-string:hover::placeholder {
-    color: var(--text-color-300);
-  }
-}
-
-.input-string:focus::placeholder {
-  color: var(--text-color-300);
-}
-
-.input-string--contenteditable:empty::before {
-  content: attr(data-placeholder);
-  color: var(--text-color-200);
-  cursor: text;
-  transition: color 0.25s;
-}
-
-@media (hover: hover) {
-  .input-string--contenteditable:empty:hover::before {
-    color: var(--text-color-300);
-  }
-}
-
-.input-string--contenteditable:empty:focus::before {
-  color: var(--text-color-300);
-}
-
-.input-string--search::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0.6rem;
-  height: 0.6rem;
-  background-image: url("../../public/images/close-icon.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.input-string--invalid {
-  box-shadow: inset 0 0 0 0.1rem rgba(var(--danger-color-rgb), 0.75);
-}
-
-.input-invalid-message {
-  visibility: hidden;
-  opacity: 0;
-  font-size: 0.8rem;
-  color: var(--danger-color);
-  transition: 0.25s;
-}
-
-.input-invalid-message--showed {
-  visibility: visible;
-  opacity: 1;
+  background-color: var(--primary-color);
 }
 
 .line-clamp {
-  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .line-clamp--1 {

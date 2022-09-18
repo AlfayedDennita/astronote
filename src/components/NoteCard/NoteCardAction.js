@@ -1,25 +1,35 @@
 import React from 'react';
-import { bool, elementType, oneOf } from 'prop-types';
+import {
+  bool, elementType, func, string,
+} from 'prop-types';
 
 import ActionButton from '../ActionButton';
 
 function NoteCardAction({
-  type, Icon, isDanger = false, ...otherProps
+  to, onClick, Icon, title, isDanger,
 }) {
   return (
     <ActionButton
       className={`note-card__action ${isDanger ? 'note-card__action--danger' : ''}`}
-      type={type}
-      {...otherProps}>
-        <Icon className="note-card__action-icon" />
+      {...{ to, onClick, title }}
+    >
+      <Icon className="note-card__action-icon" />
     </ActionButton>
   );
 }
 
 NoteCardAction.propTypes = {
-  type: oneOf(['link', 'button']).isRequired,
+  to: string,
+  onClick: func,
   Icon: elementType.isRequired,
+  title: string.isRequired,
   isDanger: bool,
+};
+
+NoteCardAction.defaultProps = {
+  to: null,
+  onClick: null,
+  isDanger: false,
 };
 
 export default NoteCardAction;

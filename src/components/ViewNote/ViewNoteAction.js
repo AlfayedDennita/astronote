@@ -1,26 +1,37 @@
 import React from 'react';
-import { bool, elementType, oneOf, string } from 'prop-types';
+import {
+  bool, elementType, func, string,
+} from 'prop-types';
 
 import ActionButton from '../ActionButton';
 
 function ViewNoteAction({
-  type, Icon, text, isDanger = false, ...otherProps
+  to, onClick, Icon, text, title, isDanger,
 }) {
   return (
     <ActionButton
       className={`view-note-page__action ${isDanger ? 'view-note-page__action--danger' : ''}`}
-      type={type}
-      {...otherProps}>
-        <Icon className="view-note-page__action-icon" />{text}
+      {...{ to, onClick, title }}
+    >
+      <Icon className="view-note-page__action-icon" />
+      {text}
     </ActionButton>
   );
 }
 
 ViewNoteAction.propTypes = {
-  type: oneOf(['link', 'button']).isRequired,
+  to: string,
+  onClick: func,
   Icon: elementType.isRequired,
   text: string.isRequired,
+  title: string.isRequired,
   isDanger: bool,
+};
+
+ViewNoteAction.defaultProps = {
+  to: null,
+  onClick: null,
+  isDanger: false,
 };
 
 export default ViewNoteAction;

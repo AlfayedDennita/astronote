@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { func, string } from 'prop-types';
 
-function NotesSearchInput({ query, placeholder, onChange }) {
+import LocaleContext from '../../contexts/LocaleContext';
+import InputString from '../InputString';
+
+function NotesSearchInput({ initialQuery, placeholder, onChange }) {
+  const { getString } = useContext(LocaleContext);
+  const [query, setQuery] = useState({});
+
+  useEffect(() => {
+    onChange(query.value || '');
+  }, [onChange, query]);
+
   return (
-    <input
-      className="input-string input-string--search notes-page__search-input"
+    <InputString
+      className="notes-page__search-input"
       type="search"
-      value={query}
+      value={initialQuery}
       placeholder={placeholder}
-      title="Search Note"
-      onChange={onChange} />
+      title={getString(39)}
+      callback={setQuery}
+    />
   );
 }
 
-NotesSearchInput.propType = {
-  query: string.isRequired,
+NotesSearchInput.propTypes = {
+  initialQuery: string.isRequired,
   placeholder: string.isRequired,
   onChange: func.isRequired,
 };

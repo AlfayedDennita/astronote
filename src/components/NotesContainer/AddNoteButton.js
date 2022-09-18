@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
+import LocaleContext from '../../contexts/LocaleContext';
+
 function AddNoteButton() {
+  const { getString } = useContext(LocaleContext);
+
   return (
     <Link
       className="link button notes-container__add-button"
       to="/notes/new"
-      title="Add New Note">
-        <AiOutlinePlusCircle className="notes-container__add-button-icon" />Add Note
+      title={getString(43)}
+    >
+      <AiOutlinePlusCircle className="notes-container__add-button-icon" />
+      {getString(42)}
     </Link>
   );
 }

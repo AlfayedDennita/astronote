@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { bool, func, string } from 'prop-types';
 
 import { formatDate } from '../../utils';
-
+import LocaleContext from '../../contexts/LocaleContext';
 import ViewNoteActions from './ViewNoteActions';
 
 function ViewNoteHeader({
-  id, title, createdDate, isArchived, onArchiveButtonClick, onDeleteButtonClick,
+  title, createdDate, isArchived, onArchiveButtonClick, onDeleteButtonClick,
 }) {
+  const { locale } = useContext(LocaleContext);
+
   return (
     <header className="view-note-page__header">
-      <h2 className="view-note-page__heading">{title}</h2>
+      <h2 className="view-note-page__title">{title}</h2>
       <time className="view-note-page__date" dateTime={createdDate}>
-        {formatDate(createdDate)}
+        {formatDate(createdDate, locale)}
       </time>
       <ViewNoteActions
-        id={id}
         isArchived={isArchived}
         onArchiveButtonClick={onArchiveButtonClick}
-        onDeleteButtonClick={onDeleteButtonClick} />
+        onDeleteButtonClick={onDeleteButtonClick}
+      />
     </header>
   );
 }
 
 ViewNoteHeader.propTypes = {
-  id: string.isRequired,
   title: string.isRequired,
   createdDate: string.isRequired,
   isArchived: bool.isRequired,

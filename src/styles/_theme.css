@@ -1,9 +1,13 @@
 :root {
-  /* Viewport Breakpoints: 576px, 768px, 992px, 1200px; */
+  /* Breakpoints */
+  --sm: 576px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
 
   /* Colors */
   --bg-color: #ffffff;
-  --bg-color-rgb: 255, 255, 255;
+  --bg-color-abs: #ffffff;
 
   --text-color: #383838;
   --text-color-rgb: 56, 56, 56;
@@ -31,6 +35,9 @@
   --primary-color-800: #4d0d00;
   --primary-color-900: #1a0300;
 
+  --success-color: #2cc537;
+  --success-color-rgb: 44, 197, 55;
+
   --danger-color: #eb4654;
   --danger-color-rgb: 235, 70, 84;
 
@@ -41,6 +48,42 @@
 
   /* Sizes */
   --wrapper-padding-x: 1rem;
+}
+
+[data-theme="dark"] {
+  /* Colors */
+  --bg-color: hsl(0, 0%, 10%);
+  --bg-color-abs: hsl(0, 0%, 90%);
+
+  --text-color: hsl(0, 0%, 90%);
+  --text-color-rgb: 230, 230, 230;
+  --text-color-50: hsl(0, 0%, 17%);
+  --text-color-100: hsl(0, 0%, 28%);
+  --text-color-200: hsl(0, 0%, 36%);
+  --text-color-300: hsl(0, 0%, 44%);
+  --text-color-400: hsl(0, 0%, 52%);
+  --text-color-500: hsl(0, 0%, 60%);
+  --text-color-600: hsl(0, 0%, 68%);
+  --text-color-700: hsl(0, 0%, 76%);
+  --text-color-800: hsl(0, 0%, 84%);
+  --text-color-900: hsl(0, 0%, 92%);
+
+  --primary-color-50: hsl(0, 0%, 15%);
+  --primary-color-100: hsl(0, 0%, 21%);
+  --primary-color-200: hsl(0, 0%, 24%);
+  --primary-color-300: hsl(0, 0%, 27%);
+  --primary-color-400: hsl(0, 0%, 30%);
+  --primary-color-500: hsl(0, 0%, 33%);
+  --primary-color-600: hsl(0, 0%, 36%);
+  --primary-color-700: hsl(0, 0%, 39%);
+  --primary-color-800: hsl(0, 0%, 42%);
+  --primary-color-900: hsl(0, 0%, 40%);
+  
+  --success-color: #77de7d;
+  --success-color-rgb: 119, 222, 125;
+  
+  --danger-color: #d65c66;
+  --danger-color-rgb: 214, 92, 102;
 }
 
 @media (min-width: 576px) {

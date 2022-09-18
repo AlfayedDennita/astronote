@@ -1,0 +1,5 @@
+.confirm-modal__message {
+  word-wrap: break-word;
+  line-height: 1.5;
+  text-align: center;
+}

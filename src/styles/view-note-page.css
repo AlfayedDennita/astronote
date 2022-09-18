@@ -5,19 +5,20 @@
 }
 
 .view-note-page__header {
-  width: min(768px, 100%);
+  width: min(var(--lg), 100%);
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.view-note-page__heading {
+.view-note-page__title {
   font: 700 2rem var(--heading-font);
   word-wrap: break-word;
+  line-height: 1.25;
 }
 
 .view-note-page__date {
-  margin-bottom: 1.5rem;
+  margin: 0.25rem 0 1.5rem 0;
   font-size: 0.9rem;
   color: var(--text-color-400);
 }
@@ -45,7 +46,7 @@
 
   .view-note-page__action--danger:hover {
     background-color: rgba(var(--danger-color-rgb), 0.75);
-    color: var(--bg-color);
+    color: var(--bg-color-abs);
   }
 }
 
@@ -55,7 +56,7 @@
 
 .view-note-page__action--danger:active {
   background-color: var(--danger-color);
-  color: var(--bg-color);
+  color: var(--bg-color-abs);
 }
 
 .view-note-page__action-icon {
@@ -63,7 +64,7 @@
 }
 
 .view-note-page__body {
-  width: min(768px, 100%);
+  width: min(var(--lg), 100%);
   word-wrap: break-word;
   line-height: 1.5;
 }

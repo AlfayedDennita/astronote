@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { formatDate, truncateText } from '../../utils';
+import LocaleContext from '../../contexts/LocaleContext';
 
-function NoteCardContent({ id, title, createdDate, body }) {
+function NoteCardContent({
+  id, title, createdDate, body,
+}) {
+  const { locale, getString } = useContext(LocaleContext);
+
   const maxLengths = {
     title: 100,
     body: 200,
@@ -16,14 +21,16 @@ function NoteCardContent({ id, title, createdDate, body }) {
         <Link
           className="link line-clamp line-clamp--2 note-card__link"
           to={`/notes/${id}`}
-          title="Open Note">
-            {truncateText(title, maxLengths.title)}
+          title={getString(44)}
+        >
+          {truncateText(title, maxLengths.title)}
         </Link>
       </h3>
       <time
         className="note-card__date"
-        dateTime={createdDate}>
-          {formatDate(createdDate)}
+        dateTime={createdDate}
+      >
+        {formatDate(createdDate, locale)}
       </time>
       <p className="line-clamp note-card__body">
         {truncateText(body, maxLengths.body)}

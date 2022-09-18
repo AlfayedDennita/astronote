@@ -8,17 +8,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0 var(--wrapper-padding-x) 0.75rem;
+  padding-bottom: 0.75rem;
   border-bottom: 0.1rem solid rgba(var(--text-color-rgb), 0.05);
   font: 700 1.4rem var(--heading-font);
-}
-
-@media (min-width: 576px) {
-  .write-note-page__heading {
-    padding: 0;
-    padding-bottom: 0.75rem;
-    margin: 0 var(--wrapper-padding-x);
-  }
 }
 
 .write-note-page__heading-icon {
@@ -33,36 +25,13 @@
 }
 
 .write-note-page__input-container {
-  position: relative;
-  width: min(576px, 100%);
-}
-
-@media (min-width: 576px) {
-  .write-note-page__input-container {
-    margin: 0 var(--wrapper-padding-x);
-  }
-}
-
-.write-note-page__input {
-  padding: 1rem var(--wrapper-padding-x);
-  border-radius: 0;
-}
-
-@media (min-width: 576px) {
-  .write-note-page__input {
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }
-}
-
-.write-note-page__input--title {
-  padding-right: calc(4rem + var(--wrapper-padding-x));
+  width: min(var(--sm), 100%);
 }
 
 .write-note-page__input--body {
-  overflow: auto;
   min-height: 15rem;
   line-height: 1.5;
+  overflow: auto;
   resize: vertical;
   transition: all 0.5s, height 0s;
 }
@@ -72,41 +41,8 @@
   line-height: 1.5;
 }
 
-.write-note-page__input-badge {
-  z-index: 1;
-  position: absolute;
-  padding: 0.25rem;
-  background-color: rgba(var(--text-color-rgb), 0.075);
-  border-radius: 0.5rem;
-  color: var(--text-color-300);
-  font-size: 0.7rem;
-  cursor: default;
-}
-
-.write-note-page__input-badge--title {
-  top: 50%;
-  right: var(--wrapper-padding-x);
-  translate: 0 -50%;
-}
-
-.write-note-page__input-invalid-message {
-  z-index: 1;
-  position: absolute;
-}
-
-.write-note-page__input-invalid-message--title {
-  top: 50%;
-  right: calc(3.5rem + var(--wrapper-padding-x));
-  translate: 0 -50%;
-}
-
-.write-note-page__input-invalid-message--body {
-  bottom: var(--wrapper-padding-x);
-  right: var(--wrapper-padding-x);
-}
-
 .write-note-page__submit-button {
-  margin: 1rem var(--wrapper-padding-x) 0;
+  margin-top: 1rem;
 }
 
 @media (min-width: 576px) {

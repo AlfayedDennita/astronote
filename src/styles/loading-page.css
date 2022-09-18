@@ -1,0 +1,17 @@
+.loading-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--wrapper-padding-x);
+}
+
+.loading-page__text {
+  font-size: 0.9rem;
+  color: var(--text-color-300);
+}

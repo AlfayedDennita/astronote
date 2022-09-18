@@ -1,0 +1,41 @@
+.loading-ripple {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  display: block;
+}
+
+.loading-ripple__circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border: 0.25rem solid rgba(var(--text-color-rgb), 0.1);
+  border-radius: 50%;
+  opacity: 1;
+  animation: loading-ripple 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.loading-ripple__circle--outer {
+  animation-delay: -0.5s;
+}
+
+@keyframes loading-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  5% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+
+  100% {
+    width: 4.5rem;
+    height: 4.5rem;
+    opacity: 0;
+  }
+}

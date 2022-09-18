@@ -1,25 +1,34 @@
 import React from 'react';
-import { bool, string } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 
 import '../styles/hamburger-button.css';
 
 function HamburgerButton({
-  className = '', isTransformed = false, ...otherProps
+  className, title, isTransformed, onClick,
 }) {
   return (
     <button
       className={`button hamburger-button ${isTransformed ? 'hamburger-button--transformed' : ''} ${className}`}
-      {...otherProps}>
-        <div className="hamburger-button__line"></div>
-        <div className="hamburger-button__line"></div>
-        <div className="hamburger-button__line"></div>
+      type="button"
+      {...{ title, onClick }}
+    >
+      <div className="hamburger-button__line" />
+      <div className="hamburger-button__line" />
+      <div className="hamburger-button__line" />
     </button>
   );
 }
 
-HamburgerButton.prototype = {
+HamburgerButton.propTypes = {
   className: string,
+  title: string.isRequired,
   isTransformed: bool,
+  onClick: func.isRequired,
+};
+
+HamburgerButton.defaultProps = {
+  className: '',
+  isTransformed: false,
 };
 
 export default HamburgerButton;

@@ -4,6 +4,22 @@
   gap: 1.5rem;
 }
 
+.notes-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.notes-page__greeting {
+  font-size: 1.1rem;
+}
+
+.notes-page__greeting--highlighted {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
 .notes-page__heading {
   display: flex;
   flex-wrap: wrap;

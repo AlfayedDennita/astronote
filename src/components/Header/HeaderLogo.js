@@ -9,8 +9,9 @@ function HeaderLogo() {
       <Link
         className="link header__logo-link"
         to="/"
-        title="Astronote!">
-          <Logo size="medium" />
+        title="Astronote!"
+      >
+        <Logo size="medium" />
       </Link>
     </h1>
   );

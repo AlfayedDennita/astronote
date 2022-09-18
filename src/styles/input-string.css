@@ -1,0 +1,104 @@
+.input-string-container {
+  position: relative;
+}
+
+.input-string {
+  width: 100%;
+  display: block;
+  padding: 1rem;
+  background-color: var(--text-color-50);
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  transition: background-color 0.5s, box-shadow 0.5s, padding 0.5s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.input-string:focus {
+  background-color: rgba(var(--text-color-rgb), 0.1);
+}
+
+.input-string::placeholder {
+  color: var(--text-color-200);
+  transition: color 0.25s;
+}
+
+@media (hover: hover) {
+  .input-string:hover::placeholder {
+    color: var(--text-color-300);
+  }
+}
+
+.input-string:focus::placeholder {
+  color: var(--text-color-300);
+}
+
+.input-string--contenteditable:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-color-200);
+  cursor: text;
+  transition: color 0.25s;
+}
+
+@media (hover: hover) {
+  .input-string--contenteditable:empty:hover::before {
+    color: var(--text-color-300);
+  }
+}
+
+.input-string--contenteditable:empty:focus::before {
+  color: var(--text-color-300);
+}
+
+.input-string--search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-image: url("../../public/images/close-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.input-string--with-badge {
+  padding-right: 5rem;
+}
+
+.input-string--invalid {
+  padding-bottom: 2.5rem;
+  box-shadow: inset 0 0 0 0.1rem rgba(var(--danger-color-rgb), 0.5);
+}
+
+.input-string__invalid-message {
+  z-index: 1;
+  position: absolute;
+  bottom: 0.75rem;
+  left: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  color: var(--danger-color);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.25s;
+}
+
+.input-string__invalid-message--visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.input-string__max-length-badge {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  translate: 0 -50%;
+  padding: 0.25rem;
+  background-color: rgba(var(--text-color-rgb), 0.075);
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-color-300);
+  cursor: default;
+}

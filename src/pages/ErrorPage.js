@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { number, string } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 
+import LocaleContext from '../contexts/LocaleContext';
+
 import '../styles/error-page.css';
 
 function ErrorPage({ errorNumber, errorText }) {
+  const { getString } = useContext(LocaleContext);
+
   return (
     <main className="main error-page">
       <div className="wrapper wrapper--padding-x error-page__wrapper">
@@ -14,8 +18,10 @@ function ErrorPage({ errorNumber, errorText }) {
         <Link
           className="link button button--padded button--bg-primary error-page__button"
           to="/"
-          title="Back to Home">
-            <AiFillHome className="error-page__button-icon" />Back to Home
+          title={getString(51)}
+        >
+          <AiFillHome className="error-page__button-icon" />
+          {getString(51)}
         </Link>
       </div>
     </main>

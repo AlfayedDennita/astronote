@@ -1,0 +1,117 @@
+.auth__box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem var(--wrapper-padding-x);
+}
+
+@media (min-width: 576px) {
+  .auth__box {
+    margin: 3rem var(--wrapper-padding-x);
+    padding: 4rem 2rem;
+    border: 0.2rem solid var(--primary-color-100);
+    border-radius: 1rem;
+  }
+}
+
+.auth__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.auth__logo-link {
+  display: inline-flex;
+}
+
+.auth__title {
+  margin-top: 0.5rem;
+  font: 700 2.5rem var(--heading-font);
+  line-height: 1.25;
+}
+
+.auth__message-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.auth__message-box--success {
+  background-color: rgba(var(--success-color-rgb), 0.1);
+  border: 0.1rem solid rgba(var(--success-color-rgb), 0.2);
+  color: var(--success-color);
+}
+
+.auth__message-box--danger {
+  background-color: rgba(var(--danger-color-rgb), 0.1);
+  border: 0.1rem solid rgba(var(--danger-color-rgb), 0.2);
+  color: var(--danger-color);
+}
+
+.auth__message-icon {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.auth__message-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth__footer-text {
+  line-height: 1.5;
+}
+
+.auth__footer-link {
+  color: var(--primary-color);
+}
+
+@media (hover: hover) {
+  .auth__footer-link:hover {
+    text-decoration: underline;
+  }
+}
+
+.auth__footer-link:active {
+  text-decoration: underline;
+}
+
+.auth__locale {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--text-color-400);
+}
+
+.auth__locale-button {
+  font-size: 0.8rem;
+  color: var(--text-color-400);
+}
+
+@media (hover: hover) {
+  .auth__locale-button:hover {
+    text-decoration: underline;
+  }
+}
+
+.auth__locale-button:active {
+  text-decoration: underline;
+}

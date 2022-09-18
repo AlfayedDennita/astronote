@@ -1,100 +1,108 @@
-import React from 'react';
-import autoBind from 'auto-bind/react';
+import React, {
+  useState, useEffect, useContext, useMemo,
+} from 'react';
 import { oneOf } from 'prop-types';
+import { useSearchParams } from 'react-router-dom';
 import { AiFillBook, AiFillFolder } from 'react-icons/ai';
 
-import withRouter from '../utils/withRouter';
-import { getActiveNotes, getArchivedNotes } from '../utils/local-data';
-
+import { getActiveNotes, getArchivedNotes } from '../utils/network-data';
+import useTitle from '../hooks/useTitle';
+import LocaleContext from '../contexts/LocaleContext';
+import LoadingPage from './LoadingPage';
 import NotesHeading from '../components/Notes/NotesHeading';
 import NotesSearchInput from '../components/Notes/NotesSearchInput';
 import NotesContainer from '../components/NotesContainer/NotesContainer';
 
 import '../styles/notes-page.css';
 
-class NotesPage extends React.Component {
-  constructor(props) {
-    super(props);
+function NotesPage({ type }) {
+  const { getString } = useContext(LocaleContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [notes, setNotes] = useState([]);
 
-    const titleQuery = this.props.searchParams.get('title') || '';
+  const getNotesByType = (type === 'unarchived' ? getActiveNotes : getArchivedNotes);
 
-    this.state = {
-      notes: this.getNotes(titleQuery) || [],
-      query: titleQuery,
+  useEffect(() => {
+    const getNotes = async () => {
+      const { error, data } = await getNotesByType();
+      if (!error) {
+        setNotes(data);
+      }
+      setIsLoading(false);
     };
+    getNotes();
+  }, [getNotesByType]);
 
-    autoBind(this);
-  }
+  const getQuery = () => searchParams.get('title') || '';
+  const [query, setQuery] = useState(() => getQuery());
 
-  getNotes(query = '') {
-    const notes = this.props.type === 'unarchived' ? getActiveNotes() : getArchivedNotes();
+  const searchInput = useMemo(() => ({
+    onChange: (searchValue) => {
+      if (searchValue !== query) {
+        setQuery(searchValue);
+        setSearchParams({ title: searchValue });
+      }
+    },
+  }), [query, setSearchParams]);
 
-    return query.length > 0 ? this.filterNotesByTitle(notes, query) : notes;
-  }
+  const refreshNotes = async () => {
+    const { error, data } = await getNotesByType();
+    if (!error) {
+      setNotes(data);
+    } else {
+      setNotes([]);
+    }
+  };
 
-  filterNotesByTitle(notes, query) {
-    return notes.filter((note) => {
-      return note.title.toLowerCase().includes(query.toLowerCase());
-    });
-  }
+  const filteredNotes = notes.filter(
+    (note) => note.title.toLowerCase().includes(query.toLowerCase()),
+  );
 
-  refreshNotes() {
-    this.setState({
-      notes: this.getNotes(this.state.query) || [],
-    });
-  }
+  const variants = {
+    unarchived: {
+      title: getString(34),
+      HeadingIcon: AiFillBook,
+      headingText: getString(36),
+    },
+    archived: {
+      title: getString(35),
+      HeadingIcon: AiFillFolder,
+      headingText: getString(37),
+    },
+  };
 
-  onSearchInputChangeHandler(event) {
-    const query = event.target.value;
-    const filteredNotes = this.filterNotesByTitle(this.getNotes(), query);
+  const { title, HeadingIcon, headingText } = variants[type];
 
-    this.setState({
-      query,
-      notes: filteredNotes,
-    });
+  useTitle(!isLoading ? title : null);
 
-    this.props.setSearchParams({ title: query });
-  }
+  const elementToRender = (
+    <main className="main notes-page">
+      <div className="wrapper wrapper--padding-x notes-page__wrapper">
+        <NotesHeading
+          Icon={HeadingIcon}
+          title={headingText}
+        />
+        <NotesSearchInput
+          initialQuery={query}
+          placeholder={getString(38)}
+          onChange={searchInput.onChange}
+        />
+        <NotesContainer
+          className="notes-page__container"
+          type={type}
+          notes={filteredNotes}
+          refreshNotes={refreshNotes}
+        />
+      </div>
+    </main>
+  );
 
-  render() {
-    const { type } = this.props;
-
-    const variants = {
-      unarchived: {
-        TitleIcon: AiFillBook,
-        titleText: 'Your Amazing Notes',
-      },
-      archived: {
-        TitleIcon: AiFillFolder,
-        titleText: 'Your Archived Notes',
-      },
-    };
-
-    const { TitleIcon, titleText } = variants[type];
-
-    return (
-      <main className="main notes-page">
-        <div className="wrapper wrapper--padding-x notes-page__wrapper">
-          <NotesHeading
-            Icon={TitleIcon}
-            text={titleText} />
-          <NotesSearchInput
-            query={this.state.query}
-            placeholder="Search your notes by title here ..."
-            onChange={this.onSearchInputChangeHandler} />
-          <NotesContainer
-            className="notes-page__container"
-            type={type}
-            notes={this.state.notes}
-            refreshNotes={this.refreshNotes} />
-        </div>
-      </main>
-    );
-  }
+  return isLoading ? <LoadingPage /> : elementToRender;
 }
 
 NotesPage.propTypes = {
   type: oneOf(['unarchived', 'archived']).isRequired,
 };
 
-export default withRouter(NotesPage);
+export default NotesPage;

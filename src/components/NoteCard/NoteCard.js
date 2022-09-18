@@ -7,7 +7,7 @@ import NoteCardActions from './NoteCardActions';
 import '../../styles/note-card.css';
 
 function NoteCard({
-  className = '', id, title, body, createdDate, isArchived, refreshNotes
+  className, id, title, body, createdDate, isArchived, refreshNotes,
 }) {
   return (
     <article className={`note-card ${className}`}>
@@ -15,12 +15,14 @@ function NoteCard({
         id={id}
         title={title}
         createdDate={createdDate}
-        body={body} />
+        body={body}
+      />
       <NoteCardActions
         id={id}
         title={title}
         isArchived={isArchived}
-        refreshNotes={refreshNotes} />
+        refreshNotes={refreshNotes}
+      />
     </article>
   );
 }
@@ -33,6 +35,10 @@ NoteCard.propTypes = {
   createdDate: string.isRequired,
   isArchived: bool.isRequired,
   refreshNotes: func.isRequired,
-}
+};
+
+NoteCard.defaultProps = {
+  className: '',
+};
 
 export default NoteCard;

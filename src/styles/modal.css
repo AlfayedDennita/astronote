@@ -1,0 +1,116 @@
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal-overlay {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-box {
+  --padding-x: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(475px, 90%);
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.modal-box__header {
+  --font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem var(--padding-x);
+}
+
+.modal-box__icon {
+  font-size: var(--font-size);
+  color: var(--primary-color);
+}
+
+.modal-box__title {
+  flex-grow: 1;
+  font: 700 var(--font-size) var(--heading-font);
+}
+
+.modal-box__close-button {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.25s;
+}
+
+@media (hover: hover) {
+  .modal-box__close-button:hover {
+    background-color: rgba(var(--text-color-rgb), 0.05);
+  }
+}
+
+.modal-box__close-button:active {
+  background-color: rgba(var(--text-color-rgb), 0.1);
+}
+
+.modal-box__close-icon {
+  font-size: var(--font-size);
+}
+
+.modal-box__body {
+  padding: 2rem var(--padding-x);
+  border-top: 0.1rem solid var(--text-color-50);
+  border-bottom: 0.1rem solid var(--text-color-50);
+}
+
+.modal-box__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem var(--padding-x);
+}
+
+.modal-box__action {
+  flex-grow: 1;
+  background-color: rgba(var(--text-color-rgb), 0.075);
+  font-size: 0.9rem;
+  transition: 0.25s;
+}
+
+.modal-box__action--danger {
+  background-color: rgba(var(--danger-color-rgb), 0.8);
+  color: var(--bg-color-abs);
+}
+
+@media (hover: hover) {
+  .modal-box__action:hover {
+    background-color: rgba(var(--text-color-rgb), 0.125);
+  }
+
+  .modal-box__action--danger:hover {
+    background-color: rgba(var(--danger-color-rgb), 0.9);
+  }
+}
+
+.modal-box__action:active {
+  background-color: rgba(var(--text-color-rgb), 0.2);
+}
+
+.modal-box__action--danger:active {
+  background-color: var(--danger-color);
+}

@@ -16,16 +16,17 @@
   font: 700 4rem var(--heading-font);
   word-wrap: break-word;
   text-align: center;
-  color: var(--bg-color);
+  color: var(--bg-color-abs);
 }
 
 .error-page__text {
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
+  line-height: 1.5;
   color: var(--text-color-600);
 }
 
 .error-page__button {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
