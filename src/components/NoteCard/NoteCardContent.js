@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
+import parser from 'html-react-parser';
 
 import { formatDate, truncateText } from '../../utils';
 import LocaleContext from '../../contexts/LocaleContext';
@@ -33,7 +34,7 @@ function NoteCardContent({
         {formatDate(createdDate, locale)}
       </time>
       <p className="line-clamp note-card__body">
-        {truncateText(body, maxLengths.body)}
+        {truncateText(parser(body), maxLengths.body)}
       </p>
     </section>
   );
